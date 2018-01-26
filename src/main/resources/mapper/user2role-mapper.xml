@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.ebook.dao.User2RoleDao">
+    <resultMap id="User2RoleMap" type="net.ebook.model.User2Role">
+        <result column="id" property="id"/>
+        <result column="role_id" property="roleId"/>
+        <result column="user_id" property="userId"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <select id="findByUserId" resultMap="User2RoleMap" parameterType="long">
+        SELECT * FROM user_2_role WHERE user_id = #{userId}
+    </select>
+
+    <insert id="saveRole" keyProperty="id">
+        INSERT INTO user_2_role(role_id,create_time,user_id)
+        VALUES (#{role.roleId}, #{role.createTime}, #{role.userId})
+    </insert>
+</mapper>

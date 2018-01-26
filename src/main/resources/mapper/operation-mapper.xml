@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.ebook.dao.UserOperationDao">
+    <resultMap id="OperationMap" type="net.ebook.model.UserOperation">
+        <result column="id" property="id"/>
+        <result column="ip" property="ip"/>
+        <result column="create_time" property="createTime"/>
+        <result column="operation" property="operation"/>
+        <result column="user_id" property="userId"/>
+    </resultMap>
+
+    <insert id="saveOperation" keyProperty="id">
+        INSERT INTO user_operation(ip,create_time,operation,user_id)
+        VALUES (#{operation.ip}, #{operation.createTime}, #{operation.operation}, #{operation.userId})
+    </insert>
+</mapper>

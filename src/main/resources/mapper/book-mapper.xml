@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.ebook.dao.BookDao">
+    <resultMap id="BookMap" type="net.ebook.model.Book">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="category" property="category"/>
+        <result column="author" property="author"/>
+        <result column="translator" property="translator"/>
+        <result column="publisher" property="publisher"/>
+        <result column="description" property="description"/>
+        <result column="publishTime" property="publish_time"/>
+        <result column="createTime" property="create_time"/>
+        <result column="deleted" property="is_deleted"/>
+    </resultMap>
+</mapper>

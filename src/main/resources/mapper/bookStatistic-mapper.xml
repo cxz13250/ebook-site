@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.ebook.dao.BookStatisticDao">
+    <resultMap id="StatisticMap" type="net.ebook.model.BookStatistic">
+        <result column="id" property="id"/>
+        <result column="book_id" property="bookId"/>
+        <result column="total" property="total"/>
+        <result column="borrowed" property="borrowed"/>
+        <result column="create_ime" property="createTime"/>
+    </resultMap>
+</mapper>
