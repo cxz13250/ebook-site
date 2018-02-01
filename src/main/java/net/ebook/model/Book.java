@@ -32,4 +32,6 @@ public class Book {
     private Timestamp createTime;
 
     private boolean deleted;
+
+
 }

@@ -6,5 +6,10 @@
         <result column="name" property="name"/>
         <result column="create_time" property="createTime"/>
         <result column="is_deleted" property="deleted"/>
+        <result column="menu" property="menu"/>
     </resultMap>
+    
+    <select id="findAll" resultMap="CategoryMap">
+        SELECT * FROM category WHERE is_deleted=0
+    </select>
 </mapper>

@@ -9,8 +9,8 @@
         <result column="translator" property="translator"/>
         <result column="publisher" property="publisher"/>
         <result column="description" property="description"/>
-        <result column="publishTime" property="publish_time"/>
-        <result column="createTime" property="create_time"/>
-        <result column="deleted" property="is_deleted"/>
+        <result column="publish_time" property="publishTime"/>
+        <result column="create_time" property="createTime"/>
+        <result column="is_deleted" property="deleted"/>
     </resultMap>
 </mapper>

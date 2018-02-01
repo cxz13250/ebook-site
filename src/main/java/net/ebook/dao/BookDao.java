@@ -1,8 +1,10 @@
 package net.ebook.dao;
 
 import net.ebook.model.Book;
-import org.apache.ibatis.annotations.Mapper;
+import net.ebook.util.BaseDao;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @Author ROKG
@@ -10,10 +12,11 @@ import org.apache.ibatis.annotations.Param;
  * @Date: Created in 上午12:05 2018/1/27
  * @Modified By:
  */
-@Mapper
-public interface BookDao {
+public interface BookDao extends BaseDao<Book> {
 
     Book findById(@Param("id") long id);
 
     long saveBook(@Param("book")Book book);
+
+    List<Book> findByCategory(@Param("category") long category);
 }

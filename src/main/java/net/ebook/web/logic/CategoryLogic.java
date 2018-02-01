@@ -1,5 +1,10 @@
 package net.ebook.web.logic;
 
+import com.github.pagehelper.PageInfo;
+import net.ebook.model.Category;
+
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @Author ROKG
  * @Description
@@ -7,4 +12,6 @@ package net.ebook.web.logic;
  * @Modified By:
  */
 public interface CategoryLogic {
+
+    PageInfo<Category> getCategoryList(int page, int rows, String keyword, HttpServletRequest request)throws Exception;
 }

@@ -12,7 +12,7 @@ import java.util.List;
  * @Date: Created in 下午12:35 2018/1/23
  * @Modified By:
  */
-@Mapper
+
 public interface MenuDao {
 
     List<Menu> findByRoleId(@Param(value = "roleId") long roleId);

@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.*;
  * @Date: Created in 下午10:19 2018/1/21
  * @Modified By:
  */
-@Mapper
+
 public interface UserDao {
 
     @Select("select * from user")

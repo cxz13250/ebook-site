@@ -41,6 +41,7 @@ import org.springframework.boot.autoconfigure.social.TwitterAutoConfiguration;
 import org.springframework.boot.autoconfigure.solr.SolrAutoConfiguration;
 import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration;
 import org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfiguration;
+import tk.mybatis.spring.annotation.MapperScan;
 
 /**
  * @Author ROKG
@@ -89,6 +90,7 @@ import org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfigurati
         WebSocketAutoConfiguration.class,
         XADataSourceAutoConfiguration.class
 })
+@MapperScan(basePackages = "net.ebook.dao")
 public class Application {
 
     public static void main(String[] args){

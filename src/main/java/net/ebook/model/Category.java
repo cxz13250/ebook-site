@@ -1,5 +1,8 @@
 package net.ebook.model;
 
+import lombok.Data;
+
+import javax.persistence.Table;
 import java.sql.Timestamp;
 
 /**
@@ -8,6 +11,8 @@ import java.sql.Timestamp;
  * @Date: Created in 下午11:33 2018/1/26
  * @Modified By:
  */
+@Data
+@Table(name = "category")
 public class Category {
 
     private long id;
@@ -17,4 +22,7 @@ public class Category {
     private Timestamp createTime;
 
     private boolean deleted;
+
+    private String menu;
+
 }

@@ -13,6 +13,7 @@ spring:
 mybatis:
     typeAliasesPackage: net.ebook.model
     mapperLocations: classpath:mapper/*.xml
+
 ---
 #开发环境
 spring:

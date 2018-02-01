@@ -1,9 +1,13 @@
 package net.ebook.web.logic.impl;
 
+import com.github.pagehelper.PageInfo;
+import net.ebook.model.Category;
 import net.ebook.service.CategoryService;
 import net.ebook.web.logic.CategoryLogic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Author ROKG
@@ -16,4 +20,9 @@ public class CategoryLogicImpl implements CategoryLogic{
 
     @Autowired
     CategoryService categoryService;
+
+    @Override
+    public PageInfo<Category> getCategoryList(int page, int rows, String keyword,HttpServletRequest request)throws Exception{
+        return categoryService.getCategoryList(page,rows,keyword);
+    }
 }

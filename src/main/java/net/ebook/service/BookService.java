@@ -1,5 +1,8 @@
 package net.ebook.service;
 
+import com.github.pagehelper.PageInfo;
+import net.ebook.model.Book;
+
 /**
  * @Author ROKG
  * @Description
@@ -7,4 +10,6 @@ package net.ebook.service;
  * @Modified By:
  */
 public interface BookService {
+
+    PageInfo<Book> getBookList(int page, int rows);
 }
