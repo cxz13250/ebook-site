@@ -14,9 +14,13 @@ import java.util.List;
  */
 public interface BookDao extends BaseDao<Book> {
 
+    List<Book> findAll(@Param("keyword")String keyword);
+
     Book findById(@Param("id") long id);
 
     long saveBook(@Param("book")Book book);
+
+    void updateBook(@Param("book")Book book);
 
     List<Book> findByCategory(@Param("category") long category);
 }

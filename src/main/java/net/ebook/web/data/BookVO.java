@@ -10,4 +10,30 @@ import lombok.Data;
  */
 @Data
 public class BookVO {
+
+    private Long id;
+
+    private String name;
+
+    private Long category;
+
+    private String categoryName;
+
+    private String author;
+
+    private String translator;
+
+    private String publisher;
+
+    private String description;
+
+    private Long publishTime;
+
+    private Long createTime;
+
+    private Boolean deleted;
+
+    private Long total;
+
+    private Long borrowed;
 }

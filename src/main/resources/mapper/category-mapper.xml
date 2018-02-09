@@ -12,4 +12,8 @@
     <select id="findAll" resultMap="CategoryMap">
         SELECT * FROM category WHERE is_deleted=0
     </select>
+
+    <select id="findById" resultMap="CategoryMap" parameterType="java.lang.Long">
+        SELECT * FROM category WHERE id=#{id} and is_deleted=0
+    </select>
 </mapper>

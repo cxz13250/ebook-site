@@ -2,6 +2,9 @@ package net.ebook.service;
 
 import com.github.pagehelper.PageInfo;
 import net.ebook.model.Book;
+import net.ebook.web.data.BookVO;
+
+import java.util.List;
 
 /**
  * @Author ROKG
@@ -11,5 +14,13 @@ import net.ebook.model.Book;
  */
 public interface BookService {
 
-    PageInfo<Book> getBookList(int page, int rows);
+    List<Book> getBookList(int page, int rows, String keyword);
+
+    Book getById(long id);
+
+    Book createBook(Book book);
+
+    Book updateBook(Book book);
+
+    void deleteBook(Book book);
 }

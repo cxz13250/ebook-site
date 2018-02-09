@@ -12,16 +12,6 @@ import org.apache.ibatis.annotations.*;
 
 public interface UserDao {
 
-    @Select("select * from user")
-    @Results({
-            @Result(property = "id", column = "id"),
-            @Result(property = "name", column = "name"),
-            @Result(property = "email", column = "email"),
-            @Result(property = "mobile", column = "mobile"),
-            @Result(property = "password", column = "password"),
-            @Result(property = "createTime", column = "create_time"),
-            @Result(property = "deleted", column = "is_delete"),
-    })
     User findById(long id);
 
     User findByEmail(@Param("email") String email);

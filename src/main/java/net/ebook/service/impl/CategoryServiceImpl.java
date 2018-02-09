@@ -2,13 +2,12 @@ package net.ebook.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import net.ebook.common.constants.DeleteStatus;
 import net.ebook.dao.CategoryDao;
-import net.ebook.model.Book;
 import net.ebook.model.Category;
 import net.ebook.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
@@ -29,5 +28,21 @@ public class CategoryServiceImpl implements CategoryService {
         PageHelper.startPage(page, rows);
         List<Category> categories=categoryDao.findAll();
         return new PageInfo<>(categories);
+    }
+
+    @Override
+    public Category getById(long id){
+        return categoryDao.findById(id);
+    }
+
+    @Override
+    public void update(Category category){
+        categoryDao.update(category);
+    }
+
+    @Override
+    public void delete(Category category){
+        category.setDeleted(DeleteStatus.IS_DELETE);
+        categoryDao.update(category);
     }
 }

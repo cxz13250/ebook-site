@@ -16,4 +16,6 @@ public interface BookStatisticDao {
     long saveBookStatistic(@Param("statistic") BookStatistic statistic);
 
     BookStatistic getByBookId(@Param("id") long id);
+
+    void update(@Param("statistic")BookStatistic statistic);
 }

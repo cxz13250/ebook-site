@@ -10,6 +10,10 @@
         <result column="create_time" property="createTime"/>
         <result column="is_delete" property="deleted"/>
     </resultMap>
+
+    <select id="findById" resultMap="UserMap" parameterType="java.lang.Long">
+        SELECT * FROM user WHERE id = #{id}
+    </select>
     
     <select id="findByEmail" resultMap="UserMap" parameterType="java.lang.String">
         SELECT * FROM user WHERE email = #{email}

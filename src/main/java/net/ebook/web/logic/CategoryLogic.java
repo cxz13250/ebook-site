@@ -14,4 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 public interface CategoryLogic {
 
     PageInfo<Category> getCategoryList(int page, int rows, String keyword, HttpServletRequest request)throws Exception;
+
+    Category getById(long id);
+
+    void update(Category category);
+
+    void delete(Long id);
 }

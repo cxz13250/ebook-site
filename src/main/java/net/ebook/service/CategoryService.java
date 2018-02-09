@@ -12,4 +12,10 @@ import net.ebook.model.Category;
 public interface CategoryService {
 
     PageInfo<Category> getCategoryList(int page, int rows, String keyword)throws Exception;
+
+    Category getById(long id);
+
+    void update(Category category);
+
+    void delete(Category category);
 }

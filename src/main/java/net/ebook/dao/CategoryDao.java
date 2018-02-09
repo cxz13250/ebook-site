@@ -21,4 +21,6 @@ public interface CategoryDao extends BaseDao<Category> {
     long saveCategory(@Param("category")Category category);
 
     List<Category> findAll();
+
+    void update(@Param("category")Category category);
 }

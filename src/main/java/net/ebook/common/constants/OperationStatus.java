@@ -8,15 +8,23 @@ package net.ebook.common.constants;
  */
 public class OperationStatus {
 
-    public static String LOGIN="login";
+    public static String LOGIN="登录";
 
-    public static String REGISTER="register";
+    public static String LOGIN_OUT="登出";
+
+    public static String REGISTER="注册";
 
     public static String ACCOUNT_LIST="accountList";
 
     public static String CUSTOM_LIST="customList";
 
-    public static String GOODS_LIST="goodsList";
+    public static String BOOK_LIST="书籍列表";
 
-    public static String UPDATE_USER="updateUser";
+    public static String BOOK_ADD="添加书籍";
+
+    public static String CATEGORY_LIST="分类列表";
+
+    public static String CATEGORY_ADD="添加分类";
+
+    public static String UPDATE_USER="更新个人信息";
 }

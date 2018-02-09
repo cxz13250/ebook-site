@@ -15,4 +15,8 @@ public interface UserLogic {
     UserVO login(UserVO userVO, HttpServletRequest request);
 
     UserVO register(UserVO userVO, HttpServletRequest request) throws Exception;
+
+    UserVO update(UserVO userVO, HttpServletRequest request)throws Exception;
+
+    String logout(HttpServletRequest request);
 }

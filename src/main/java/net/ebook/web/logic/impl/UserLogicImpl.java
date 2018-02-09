@@ -108,4 +108,40 @@ public class UserLogicImpl implements UserLogic{
         operationLogic.recordUserOperation(request,user.getId(), OperationStatus.REGISTER);
         return userVO;
     }
+
+    @Override
+    public UserVO update(UserVO userVO, HttpServletRequest request)throws Exception{
+        if (userVO.getId() == null) {
+            throw new IllegalArgumentException("user id not present");
+        }
+        User user=userService.getUserById(userVO.getId());
+        if (user == null) {
+            throw new HttpBadRequestException("user not exist");
+        }
+
+        if (user.getName()!=null) {
+            user.setName(userVO.getName());
+        }
+        if (user.getPassword()!=null) {
+            user.setPassword(EncryptionUtil.encryptMD5(userVO.getPassword()));
+        }
+
+        HttpSession session = request.getSession();
+        Long userId = (Long)session.getAttribute("id");
+        operationLogic.recordUserOperation(request,userId,OperationStatus.UPDATE_USER);
+
+        return userVO;
+    }
+
+    @Override
+    public String logout(HttpServletRequest request){
+        HttpSession session=request.getSession();
+        if(session.getAttribute("id")!=null) {
+            long userId = (Long) session.getAttribute("id");
+            operationLogic.recordUserOperation(request, userId, OperationStatus.LOGIN_OUT);
+            return "您已安全登出";
+        }else {
+            return "您尚未登录";
+        }
+    }
 }

@@ -1,5 +1,7 @@
 package net.ebook.service;
 
+import net.ebook.model.BookStatistic;
+
 /**
  * @Author ROKG
  * @Description
@@ -7,4 +9,11 @@ package net.ebook.service;
  * @Modified By:
  */
 public interface BookStatisticService {
+
+    BookStatistic create(BookStatistic statistic);
+
+    BookStatistic findbyId(long id);
+
+    void update(BookStatistic statistic);
+
 }
