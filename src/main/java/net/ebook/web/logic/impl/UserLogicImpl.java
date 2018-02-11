@@ -65,10 +65,10 @@ public class UserLogicImpl implements UserLogic{
         vo.setRoleId(role.getRoleId());
         vo.setRoleName(userService.findRole(role.getRoleId()).getName());
 
-        operationLogic.recordUserOperation(request, OperationStatus.LOGIN);
-
         HttpSession session=request.getSession();
         session.setAttribute("id",user.getId());
+
+        operationLogic.recordUserOperation(request, OperationStatus.LOGIN);
         return vo;
     }
 

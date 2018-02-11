@@ -42,6 +42,7 @@ import org.springframework.boot.autoconfigure.solr.SolrAutoConfiguration;
 import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration;
 import org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfiguration;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import tk.mybatis.spring.annotation.MapperScan;
 
@@ -95,6 +96,7 @@ import javax.servlet.MultipartConfigElement;
         XADataSourceAutoConfiguration.class
 })
 @MapperScan(basePackages = "net.ebook.dao")
+@ServletComponentScan
 public class Application {
 
     public static void main(String[] args){

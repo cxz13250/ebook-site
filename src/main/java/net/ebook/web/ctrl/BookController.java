@@ -73,7 +73,7 @@ public class BookController extends BaseController{
         }
     }
 
-    @RequestMapping(value = UrlConstants.API_BOOK,method = RequestMethod.POST)
+    @RequestMapping(value = UrlConstants.API_BOOK,method = RequestMethod.DELETE)
     public Map<String, Object> deleteBook(@RequestParam(value = "bookId")Long bookId, HttpServletRequest request){
         try {
             bookLogic.delete(bookId);

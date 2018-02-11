@@ -12,7 +12,7 @@
         <result column="publish_time" property="publishTime"/>
         <result column="create_time" property="createTime"/>
         <result column="is_deleted" property="deleted"/>
-    </resultMap>s
+    </resultMap>
     
     <select id="findById" resultMap="BookMap" parameterType="java.lang.Long">
         SELECT * FROM book WHERE id=#{id} and is_deleted=0
@@ -24,7 +24,7 @@
 
     <insert id="saveBook" keyProperty="book.id" parameterType="net.ebook.model.Book" useGeneratedKeys="true" keyColumn="id">
         INSERT INTO book(name,category,author,translator,publisher,description,publish_time,create_time,is_deleted)
-        VALUES (#{book.name},#{book.category},#{book.author},#{book.translator},#{book.publisher},#{book.description},#{book.publishTime},#{book.createTime},#{book,deleted})
+        VALUES (#{book.name},#{book.category},#{book.author},#{book.translator},#{book.publisher},#{book.description},#{book.publishTime},#{book.createTime},#{book.deleted})
     </insert>
 
     <update id="updateBook" parameterType="net.ebook.model.Book">
