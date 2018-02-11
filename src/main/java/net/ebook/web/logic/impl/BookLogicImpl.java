@@ -49,10 +49,7 @@ public class BookLogicImpl implements BookLogic{
         List<Book> books=bookService.getBookList(page, rows, keyword);
         List<BookVO> vos=bookVOWrapper.wrap(books);
 
-        HttpSession session=request.getSession();
-        Long userId=(Long)session.getAttribute("id");
-
-        operationLogic.recordUserOperation(request,userId, OperationStatus.BOOK_LIST);
+        operationLogic.recordUserOperation(request, OperationStatus.BOOK_LIST);
         return new PageInfo<BookVO>(vos);
     }
 

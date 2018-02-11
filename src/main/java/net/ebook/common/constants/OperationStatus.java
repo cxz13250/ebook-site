@@ -27,4 +27,6 @@ public class OperationStatus {
     public static String CATEGORY_ADD="添加分类";
 
     public static String UPDATE_USER="更新个人信息";
+
+    public static String UPLOAD_IMAGE="上传图片";
 }

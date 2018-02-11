@@ -10,5 +10,5 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface UserOperationLogic {
 
-    void recordUserOperation(HttpServletRequest request, Long userId, String operation);
+    void recordUserOperation(HttpServletRequest request, String operation);
 }

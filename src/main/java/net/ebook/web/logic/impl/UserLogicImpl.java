@@ -65,7 +65,7 @@ public class UserLogicImpl implements UserLogic{
         vo.setRoleId(role.getRoleId());
         vo.setRoleName(userService.findRole(role.getRoleId()).getName());
 
-        operationLogic.recordUserOperation(request,user.getId(), OperationStatus.LOGIN);
+        operationLogic.recordUserOperation(request, OperationStatus.LOGIN);
 
         HttpSession session=request.getSession();
         session.setAttribute("id",user.getId());
@@ -105,7 +105,10 @@ public class UserLogicImpl implements UserLogic{
         userVO.setRoleId(roleId);
         userVO.setRoleName(userService.findRole(roleId).getName());
 
-        operationLogic.recordUserOperation(request,user.getId(), OperationStatus.REGISTER);
+        HttpSession session=request.getSession();
+        session.setAttribute("id",user.getId());
+
+        operationLogic.recordUserOperation(request, OperationStatus.REGISTER);
         return userVO;
     }
 
@@ -126,9 +129,7 @@ public class UserLogicImpl implements UserLogic{
             user.setPassword(EncryptionUtil.encryptMD5(userVO.getPassword()));
         }
 
-        HttpSession session = request.getSession();
-        Long userId = (Long)session.getAttribute("id");
-        operationLogic.recordUserOperation(request,userId,OperationStatus.UPDATE_USER);
+        operationLogic.recordUserOperation(request,OperationStatus.UPDATE_USER);
 
         return userVO;
     }
@@ -137,8 +138,7 @@ public class UserLogicImpl implements UserLogic{
     public String logout(HttpServletRequest request){
         HttpSession session=request.getSession();
         if(session.getAttribute("id")!=null) {
-            long userId = (Long) session.getAttribute("id");
-            operationLogic.recordUserOperation(request, userId, OperationStatus.LOGIN_OUT);
+            operationLogic.recordUserOperation(request, OperationStatus.LOGIN_OUT);
             return "您已安全登出";
         }else {
             return "您尚未登录";

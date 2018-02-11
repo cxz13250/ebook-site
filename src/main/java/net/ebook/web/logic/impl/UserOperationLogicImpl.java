@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 
 /**
@@ -24,11 +25,16 @@ public class UserOperationLogicImpl extends BaseLogic implements UserOperationLo
     UserOperationService operationService;
 
     @Override
-    public void recordUserOperation(HttpServletRequest request, Long userId, String operation){
+    public void recordUserOperation(HttpServletRequest request, String operation){
         String ip = HttpUtil.getIpByRequest(request);
-        if("101.37.78.167".equals(ip)) {
+        if("101.131.137.149".equals(ip)) {
             return;
         }
+        HttpSession session=request.getSession();
+        if(session.getAttribute("id") == null){
+            return;
+        }
+        Long userId=(Long)session.getAttribute("id");
         UserOperation userOperation = new UserOperation();
         userOperation.setIp(ip);
         userOperation.setUserId(userId);
