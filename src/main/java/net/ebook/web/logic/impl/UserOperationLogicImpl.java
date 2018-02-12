@@ -31,10 +31,10 @@ public class UserOperationLogicImpl extends BaseLogic implements UserOperationLo
             return;
         }
         HttpSession session=request.getSession();
-        if(session.getAttribute("id") == null){
+        if(session.getAttribute("userId") == null){
             return;
         }
-        Long userId=(Long)session.getAttribute("id");
+        Long userId=(Long)session.getAttribute("userId");
         UserOperation userOperation = new UserOperation();
         userOperation.setIp(ip);
         userOperation.setUserId(userId);
@@ -42,6 +42,6 @@ public class UserOperationLogicImpl extends BaseLogic implements UserOperationLo
         Timestamp current=new Timestamp(System.currentTimeMillis());
         userOperation.setCreateTime(current);
         operationService.create(userOperation);
-        LOG.info(String.format("User[%d] Login at [%s]",userId,current.toString()));
+        LOG.info(String.format("User[%d] "+operation+" at [%s]",userId,current.toString()));
     }
 }

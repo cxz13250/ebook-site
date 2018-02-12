@@ -1,7 +1,8 @@
 package net.ebook.service;
 
-import com.github.pagehelper.PageInfo;
 import net.ebook.model.Category;
+
+import java.util.List;
 
 /**
  * @Author ROKG
@@ -11,11 +12,13 @@ import net.ebook.model.Category;
  */
 public interface CategoryService {
 
-    PageInfo<Category> getCategoryList(int page, int rows, String keyword)throws Exception;
+    List<Category> getCategoryList(int page, int rows, String keyword)throws Exception;
 
     Category getById(long id);
 
-    void update(Category category);
+    Category create(Category category);
+
+    Category update(Category category);
 
     void delete(Category category);
 }

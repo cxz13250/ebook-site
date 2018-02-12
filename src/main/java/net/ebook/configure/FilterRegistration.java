@@ -19,7 +19,8 @@ public class FilterRegistration {
     public FilterRegistrationBean getFilterRegistration() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(sessionFilter());
-        registration.addUrlPatterns("/api");
+        registration.addUrlPatterns("/*");
+        registration.addInitParameter("targetFilterLifecycle", "true");
         registration.setName("sessionFilter");
         return registration;
     }

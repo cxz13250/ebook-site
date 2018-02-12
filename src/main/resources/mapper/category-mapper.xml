@@ -16,4 +16,12 @@
     <select id="findById" resultMap="CategoryMap" parameterType="java.lang.Long">
         SELECT * FROM category WHERE id=#{id} and is_deleted=0
     </select>
+
+    <insert id="saveCategory" keyColumn="id" useGeneratedKeys="true" parameterType="net.ebook.model.Category">
+        INSERT INTO category(name,menu,create_time,is_deleted) VALUES (#{category.name},#{category.menu},#{category.createTime},#{category.deleted})
+    </insert>
+
+    <update id="update" parameterType="net.ebook.model.Category">
+        UPDATE category SET name=#{category.name}, menu=#{category.menu} WHERE id=#{category.id} AND is_deleted=#{category.deleted}
+    </update>
 </mapper>

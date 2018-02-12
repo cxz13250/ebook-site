@@ -9,6 +9,7 @@ import net.ebook.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -24,10 +25,10 @@ public class CategoryServiceImpl implements CategoryService {
     CategoryDao categoryDao;
 
     @Override
-    public PageInfo<Category> getCategoryList(int page, int rows, String keyword)throws Exception{
+    public List<Category> getCategoryList(int page, int rows, String keyword)throws Exception{
         PageHelper.startPage(page, rows);
         List<Category> categories=categoryDao.findAll();
-        return new PageInfo<>(categories);
+        return categories;
     }
 
     @Override
@@ -36,8 +37,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void update(Category category){
+    public Category create(Category category){
+        category.setCreateTime(new Timestamp(System.currentTimeMillis()));
+        category.setDeleted(DeleteStatus.IS_NOT_DELETE);
+        categoryDao.saveCategory(category);
+        return category;
+    }
+
+    @Override
+    public Category update(Category category){
         categoryDao.update(category);
+        return category;
     }
 
     @Override

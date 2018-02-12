@@ -66,7 +66,7 @@ public class UserLogicImpl implements UserLogic{
         vo.setRoleName(userService.findRole(role.getRoleId()).getName());
 
         HttpSession session=request.getSession();
-        session.setAttribute("id",user.getId());
+        session.setAttribute("userId",user.getId());
 
         operationLogic.recordUserOperation(request, OperationStatus.LOGIN);
         return vo;
@@ -106,7 +106,7 @@ public class UserLogicImpl implements UserLogic{
         userVO.setRoleName(userService.findRole(roleId).getName());
 
         HttpSession session=request.getSession();
-        session.setAttribute("id",user.getId());
+        session.setAttribute("userId",user.getId());
 
         operationLogic.recordUserOperation(request, OperationStatus.REGISTER);
         return userVO;
@@ -137,7 +137,8 @@ public class UserLogicImpl implements UserLogic{
     @Override
     public String logout(HttpServletRequest request){
         HttpSession session=request.getSession();
-        if(session.getAttribute("id")!=null) {
+        if(session.getAttribute("userId")!=null) {
+            session.invalidate();
             operationLogic.recordUserOperation(request, OperationStatus.LOGIN_OUT);
             return "您已安全登出";
         }else {

@@ -96,7 +96,6 @@ import javax.servlet.MultipartConfigElement;
         XADataSourceAutoConfiguration.class
 })
 @MapperScan(basePackages = "net.ebook.dao")
-@ServletComponentScan
 public class Application {
 
     public static void main(String[] args){

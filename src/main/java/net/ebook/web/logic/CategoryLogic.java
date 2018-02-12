@@ -2,6 +2,7 @@ package net.ebook.web.logic;
 
 import com.github.pagehelper.PageInfo;
 import net.ebook.model.Category;
+import net.ebook.web.data.CategoryVO;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,11 +14,13 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface CategoryLogic {
 
-    PageInfo<Category> getCategoryList(int page, int rows, String keyword, HttpServletRequest request)throws Exception;
+    PageInfo<CategoryVO> getCategoryList(int page, int rows, String keyword, HttpServletRequest request)throws Exception;
 
-    Category getById(long id);
+    CategoryVO create(CategoryVO vo);
 
-    void update(Category category);
+    CategoryVO getById(long id);
+
+    CategoryVO update(CategoryVO vo);
 
     void delete(Long id);
 }
