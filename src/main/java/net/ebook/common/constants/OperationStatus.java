@@ -29,4 +29,16 @@ public class OperationStatus {
     public static String UPDATE_USER="更新个人信息";
 
     public static String UPLOAD_IMAGE="上传图片";
+
+    public static String ORDER_LIST="借书单列表";
+
+    public static String ORDER_DETAIL="借书单详情";
+
+    public static String ORDER_CREATE="创建借书单";
+
+    public static String ORDER_UPDATE="创建借书单";
+
+    public static String ORDER_DELETE="删除借书单";
+
+    public static String BOOK_RETURN="归还书籍";
 }

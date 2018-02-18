@@ -8,7 +8,7 @@ public class UrlConstants {
     public static final String API="/api/";
     public static final String API_USER = "/api/user";
     public static final String API_BOOK = "/api/book";
-    public static final String API_CUSTOM = "/api/custom";
+    public static final String API_ORDER = "/api/order";
     public static final String API_ACCOUNT = "/api/account";
     public static final String API_CATEGORY = "/api/category";
     public static final String API_PURCHASE = "/api/purchase";
