@@ -1,5 +1,6 @@
 package net.ebook.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import net.ebook.common.constants.DeleteStatus;
 import net.ebook.dao.RoleDao;
 import net.ebook.dao.User2RoleDao;
@@ -8,6 +9,7 @@ import net.ebook.model.Role;
 import net.ebook.model.User;
 import net.ebook.model.User2Role;
 import net.ebook.service.UserService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,5 +65,15 @@ public class UserServiceImpl implements UserService{
     @Override
     public Role findRole(long id){
         return roleDao.findById(id);
+    }
+
+    @Override
+    public List<User> getUsers(int page, int rows, String keyword){
+        PageHelper.startPage(page,rows);
+        if(keyword!=null && StringUtils.trim(keyword)!=""){
+            return userDao.findByKeyword(keyword);
+        }else {
+            return userDao.findAll();
+        }
     }
 }

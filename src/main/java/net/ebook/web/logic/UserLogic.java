@@ -1,8 +1,10 @@
 package net.ebook.web.logic;
 
+import com.github.pagehelper.PageInfo;
 import net.ebook.web.data.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @Author ROKG
@@ -19,4 +21,6 @@ public interface UserLogic {
     UserVO update(UserVO userVO, HttpServletRequest request)throws Exception;
 
     String logout(HttpServletRequest request);
+
+    PageInfo<UserVO> getUsers(int page, int rows, String keyword);
 }

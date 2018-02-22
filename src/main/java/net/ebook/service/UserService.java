@@ -25,4 +25,6 @@ public interface UserService {
     List<User2Role> getRoles(long userId);
 
     Role findRole(long id);
+
+    List<User> getUsers(int page, int rows, String keyword);
 }

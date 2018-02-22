@@ -3,6 +3,8 @@ package net.ebook.dao;
 import net.ebook.model.User;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 /**
  * @Author ROKG
  * @Description
@@ -19,4 +21,8 @@ public interface UserDao {
     User findByMobile(@Param("mobile") String mobile);
 
     long createUser(@Param("user") User user);
+
+    List<User> findAll();
+
+    List<User> findByKeyword(@Param("keyword")String keyword);
 }

@@ -14,4 +14,6 @@ import java.util.List;
 public interface UserOperationService {
 
     void create(UserOperation userOperation);
+
+    List<UserOperation> getList(int page, int rows);
 }

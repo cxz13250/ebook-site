@@ -14,7 +14,7 @@ public class OperationStatus {
 
     public static String REGISTER="注册";
 
-    public static String ACCOUNT_LIST="accountList";
+    public static String USER_LIST="用户列表";
 
     public static String CUSTOM_LIST="customList";
 

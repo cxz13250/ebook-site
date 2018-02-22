@@ -1,5 +1,6 @@
 package net.ebook.web.logic.impl;
 
+import com.github.pagehelper.PageInfo;
 import net.ebook.common.constants.DeleteStatus;
 import net.ebook.common.constants.OperationStatus;
 import net.ebook.model.User;
@@ -19,6 +20,9 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * @Author ROKG
@@ -144,5 +148,19 @@ public class UserLogicImpl implements UserLogic{
         }else {
             return "您尚未登录";
         }
+    }
+
+    @Override
+    public PageInfo<UserVO> getUsers(int page, int rows, String keyword){
+        List<User> users = userService.getUsers(page,rows,keyword);
+        List<UserVO> vos = users.parallelStream().map(user -> {
+            UserVO vo = userWrapper.wrap(user);
+            vo.setPassword("");
+            User2Role role=userService.getRoles(user.getId()).get(0);
+            vo.setRoleId(role.getRoleId());
+            vo.setRoleName(userService.findRole(role.getRoleId()).getName());
+            return vo;
+        }).collect(Collectors.toList());
+        return new PageInfo<>(vos);
     }
 }

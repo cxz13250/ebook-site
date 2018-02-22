@@ -13,4 +13,8 @@
         INSERT INTO user_operation(ip,create_time,operation,user_id)
         VALUES (#{operation.ip}, #{operation.createTime}, #{operation.operation}, #{operation.userId})
     </insert>
+
+    <select id="findOperation" resultMap="OperationMap">
+        SELECT * FROM user_operation
+    </select>
 </mapper>

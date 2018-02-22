@@ -27,7 +27,7 @@ public class MyFilter implements Filter{
 
         String url=request.getRequestURI().substring(request.getContextPath().length());
         System.out.println(url);
-        if(url.indexOf("/api/user/login")>-1){
+        if(url.indexOf("/api/user/login")>-1 || url.indexOf("/api/user/register")>-1 || url.indexOf("/api/custom")>-1){
             chain.doFilter(request,response);
             return;
         }

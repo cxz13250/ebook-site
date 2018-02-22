@@ -19,6 +19,14 @@
         SELECT * FROM user WHERE email = #{email}
     </select>
 
+    <select id="findAll" resultMap="UserMap">
+        SELECT * FROM user
+    </select>
+
+    <select id="findByKeyword" resultMap="UserMap" parameterType="java.lang.String">
+        SELECT * FROM user WHERE name LIKE "%" + keyword + "%"
+    </select>
+
     <select id="findByMobile" resultMap="UserMap" parameterType="java.lang.String">
         SELECT * FROM user WHERE mobile = #{mobile}
     </select>
