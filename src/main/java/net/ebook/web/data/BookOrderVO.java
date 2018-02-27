@@ -17,6 +17,8 @@ public class BookOrderVO {
 
     private Long userId;
 
+    private String userName;
+
     private Long createTime;
 
     private List<OrderItemVO> itemVOS;

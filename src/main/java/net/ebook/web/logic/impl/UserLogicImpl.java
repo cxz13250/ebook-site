@@ -163,4 +163,17 @@ public class UserLogicImpl implements UserLogic{
         }).collect(Collectors.toList());
         return new PageInfo<>(vos);
     }
+
+    @Override
+    public UserVO getUser(Long userId){
+        User user=userService.getUserById(userId);
+        if (user == null) {
+            throw new HttpBadRequestException("用户不存在");
+        }
+        UserVO vo = userWrapper.wrap(user);
+        vo.setPassword("");
+        User2Role role=userService.getRoles(userId).get(0);
+        vo.setRoleId(role.getRoleId());
+        return vo;
+    }
 }

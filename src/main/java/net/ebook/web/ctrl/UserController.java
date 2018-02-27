@@ -95,9 +95,19 @@ public class UserController extends BaseController{
                                        @RequestParam(value = "rows")Integer rows,
                                        @RequestParam(value = "keyword",required = false)String keyword,HttpServletRequest request){
         PageInfo<OperationVO> voPageInfo=operationLogic.getOperations(page,rows);
-        operationLogic.recordUserOperation(request, OperationStatus.USER_LIST);
+        operationLogic.recordUserOperation(request, OperationStatus.OPERATION_LIST);
         return SuccessResult.ok(ResponseMessage.ITEM_RESULT,voPageInfo);
     }
 
-
+    @RequestMapping(value = UrlConstants.API_USER,method = RequestMethod.GET)
+    public Map<String, Object> getUser(@RequestParam(value = "userId")Long userId,
+                                       HttpServletRequest request){
+        try {
+            UserVO vo = userLogic.getUser(userId);
+            operationLogic.recordUserOperation(request, OperationStatus.USER_LIST);
+            return SuccessResult.ok(ResponseMessage.ITEM_RESULT, vo);
+        }catch (Exception e){
+            return new ErrorResult(e.getMessage());
+        }
+    }
 }

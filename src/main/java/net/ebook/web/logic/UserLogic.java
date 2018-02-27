@@ -23,4 +23,6 @@ public interface UserLogic {
     String logout(HttpServletRequest request);
 
     PageInfo<UserVO> getUsers(int page, int rows, String keyword);
+
+    UserVO getUser(Long userId);
 }

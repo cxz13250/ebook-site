@@ -36,4 +36,6 @@ public class BookVO {
     private Long total;
 
     private Long borrowed;
+
+    private String imgUrl;
 }

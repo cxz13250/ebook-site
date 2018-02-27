@@ -45,7 +45,7 @@ public class OrderController extends BaseController {
     }
 
     @RequestMapping(value = UrlConstants.API + "orders",method = RequestMethod.GET)
-    public Map<String, Object> getOrders(@RequestParam(value = "userId")Long userId,
+    public Map<String, Object> getOrders(@RequestParam(value = "userId",required = false)Long userId,
                                          @RequestParam(value = "page")Integer page,
                                          @RequestParam(value = "rows")Integer rows,
                                         HttpServletRequest request){

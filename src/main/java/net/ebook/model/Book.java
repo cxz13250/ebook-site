@@ -33,5 +33,6 @@ public class Book {
 
     private boolean deleted;
 
+    private String imgUrl;
 
 }

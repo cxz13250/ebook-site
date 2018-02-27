@@ -38,6 +38,7 @@ public class BookVOWrapper extends BaseWrapper<BookVO,Book>{
         vo.setName(book.getName());
         vo.setTranslator(book.getTranslator());
         vo.setDeleted(book.isDeleted());
+        vo.setImgUrl(book.getImgUrl());
         vo.setCategoryName(categoryService.getById(book.getCategory()).getName());
 
         BookStatistic statistic=statisticService.findbyId(book.getId());
@@ -56,6 +57,7 @@ public class BookVOWrapper extends BaseWrapper<BookVO,Book>{
         book.setPublisher(vo.getPublisher());
         book.setPublishTime(new Timestamp(vo.getPublishTime()));
         book.setTranslator(vo.getTranslator());
+        book.setImgUrl(vo.getImgUrl());
         return book;
     }
 

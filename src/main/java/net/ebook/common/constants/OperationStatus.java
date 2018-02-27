@@ -16,7 +16,7 @@ public class OperationStatus {
 
     public static String USER_LIST="用户列表";
 
-    public static String CUSTOM_LIST="customList";
+    public static String OPERATION_LIST="日志列表";
 
     public static String BOOK_LIST="书籍列表";
 
