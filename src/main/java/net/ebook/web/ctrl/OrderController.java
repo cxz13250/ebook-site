@@ -54,6 +54,7 @@ public class OrderController extends BaseController {
             operationLogic.recordUserOperation(request, OperationStatus.ORDER_LIST);
             return SuccessResult.ok(ResponseMessage.ITEM_RESULT, voPageInfo);
         }catch (Exception e){
+            e.printStackTrace();
             return new ErrorResult(e.getMessage());
         }
     }

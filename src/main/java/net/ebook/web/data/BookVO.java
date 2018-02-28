@@ -27,7 +27,7 @@ public class BookVO {
 
     private String description;
 
-    private Long publishTime;
+    private String publishTime;
 
     private Long createTime;
 

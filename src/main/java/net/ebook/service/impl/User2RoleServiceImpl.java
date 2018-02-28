@@ -26,4 +26,9 @@ public class User2RoleServiceImpl implements User2RoleService {
         user2RoleDao.saveRole(user2Role);
     }
 
+    @Override
+    public void updateRole(User2Role user2Role){
+        user2RoleDao.updateRole(user2Role);
+    }
+
 }

@@ -36,6 +36,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<BookOrder> findAll(int page, int rows){
+        PageHelper.startPage(page,rows);
+        List<BookOrder> orders=orderDao.findAll();
+        return orders;
+    }
+
+    @Override
     public BookOrder findById(long orderId){
         return orderDao.findById(orderId);
     }

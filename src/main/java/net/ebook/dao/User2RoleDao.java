@@ -15,4 +15,6 @@ public interface User2RoleDao {
     List<User2Role> findByUserId(long userId);
 
     void saveRole(@Param(value = "role")User2Role role);
+
+    void updateRole(@Param(value = "role")User2Role role);
 }

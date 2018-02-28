@@ -27,6 +27,8 @@ public class User {
 
     private Boolean deleted;
 
+    private String imgUrl;
+
     public long getId() {
         return id;
     }

@@ -31,4 +31,6 @@ public class UserVO {
     private String roleName;
 
     private List<MenuVO> menuVOS;
+
+    private String imgUrl;
 }

@@ -8,4 +8,8 @@
         <result column="borrowed" property="borrowed"/>
         <result column="create_ime" property="createTime"/>
     </resultMap>
+
+    <insert id="saveBookStatistic" keyColumn="id" useGeneratedKeys="true" parameterType="net.ebook.model.BookStatistic">
+        INSERT book_statistic(book_id,total,borrowed,create_ime) VALUES (#{statistic.bookId},#{statistic.total},#{statistic.borrowed},#{statistic.createTime});
+    </insert>
 </mapper>

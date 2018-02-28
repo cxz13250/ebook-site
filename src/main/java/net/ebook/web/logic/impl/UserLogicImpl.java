@@ -14,6 +14,7 @@ import net.ebook.web.logic.MenuLogic;
 import net.ebook.web.logic.UserLogic;
 import net.ebook.web.logic.UserOperationLogic;
 import net.ebook.web.wrapper.UserWrapper;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -126,11 +127,16 @@ public class UserLogicImpl implements UserLogic{
             throw new HttpBadRequestException("user not exist");
         }
 
-        if (user.getName()!=null) {
+        if (userVO.getName()!=null) {
             user.setName(userVO.getName());
         }
-        if (user.getPassword()!=null) {
+        if (userVO.getPassword()!=null && StringUtils.trim(userVO.getPassword())!="") {
             user.setPassword(EncryptionUtil.encryptMD5(userVO.getPassword()));
+        }
+        if (userVO.getRoleId()!=null){
+            User2Role role=userService.getRoles(userVO.getId()).get(0);
+            role.setRoleId(userVO.getRoleId());
+            user2RoleService.updateRole(role);
         }
 
         operationLogic.recordUserOperation(request,OperationStatus.UPDATE_USER);

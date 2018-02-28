@@ -33,7 +33,7 @@ public class BookVOWrapper extends BaseWrapper<BookVO,Book>{
         vo.setId(book.getId());
         vo.setCreateTime(book.getCreateTime().getTime());
         vo.setPublisher(book.getPublisher());
-        vo.setPublishTime(book.getPublishTime().getTime());
+        vo.setPublishTime(book.getPublishTime());
         vo.setDescription(book.getDescription());
         vo.setName(book.getName());
         vo.setTranslator(book.getTranslator());
@@ -55,7 +55,7 @@ public class BookVOWrapper extends BaseWrapper<BookVO,Book>{
         book.setName(vo.getName());
         book.setDescription(vo.getDescription());
         book.setPublisher(vo.getPublisher());
-        book.setPublishTime(new Timestamp(vo.getPublishTime()));
+        book.setPublishTime(vo.getPublishTime());
         book.setTranslator(vo.getTranslator());
         book.setImgUrl(vo.getImgUrl());
         return book;

@@ -17,7 +17,7 @@ import java.util.List;
  */
 public interface OrderLogic {
 
-    PageInfo<BookOrderVO> findByUserId(long userId, int page, int rows);
+    PageInfo<BookOrderVO> findByUserId(Long userId, int page, int rows);
 
     BookOrderVO findById(long orderId);
 

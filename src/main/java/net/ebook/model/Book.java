@@ -27,7 +27,7 @@ public class Book {
 
     private String description;
 
-    private Timestamp publishTime;
+    private String publishTime;
 
     private Timestamp createTime;
 

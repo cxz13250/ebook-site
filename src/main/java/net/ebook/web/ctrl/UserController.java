@@ -62,7 +62,7 @@ public class UserController extends BaseController{
     @RequestMapping(value = UrlConstants.API_USER, method = RequestMethod.PUT)
     public Map<String, Object> update(@RequestBody @NotNull UserVO userVO, HttpServletRequest request){
         try {
-            return SuccessResult.ok(ResponseMessage.ITEM_RESULT, userLogic.register(userVO,request));
+            return SuccessResult.ok(ResponseMessage.ITEM_RESULT, userLogic.update(userVO,request));
         }catch (Exception ex){
             ex.printStackTrace();
             return new ErrorResult(ex.getMessage());

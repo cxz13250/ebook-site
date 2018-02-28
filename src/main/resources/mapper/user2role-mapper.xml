@@ -16,4 +16,8 @@
         INSERT INTO user_2_role(role_id,create_time,user_id)
         VALUES (#{role.roleId}, #{role.createTime}, #{role.userId})
     </insert>
+    
+    <update id="updateRole" parameterType="net.ebook.model.User2Role">
+        UPDATE user_2_role set role_id = #{role.roleId} WHERE id = #{role.id}
+    </update>
 </mapper>

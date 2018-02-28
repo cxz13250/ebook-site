@@ -20,6 +20,7 @@ public class UserWrapper extends BaseWrapper<UserVO,User> {
         userVO.setMobile(user.getMobile());
         userVO.setName(user.getName());
         userVO.setPassword(user.getPassword());
+        userVO.setImgUrl(user.getImgUrl());
         return userVO;
     }
 
@@ -30,6 +31,7 @@ public class UserWrapper extends BaseWrapper<UserVO,User> {
         user.setMobile(userVO.getMobile());
         user.setPassword(EncryptionUtil.encryptMD5(userVO.getPassword()));
         user.setName(userVO.getName());
+        user.setImgUrl(userVO.getImgUrl());
         return user;
     }
 }

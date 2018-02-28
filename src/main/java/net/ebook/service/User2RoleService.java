@@ -11,4 +11,6 @@ import net.ebook.model.User2Role;
 public interface User2RoleService {
 
     void createRole(User2Role user2Role);
+
+    void updateRole(User2Role user2Role);
 }

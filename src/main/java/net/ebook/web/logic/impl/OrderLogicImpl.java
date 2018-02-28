@@ -33,8 +33,13 @@ public class OrderLogicImpl implements OrderLogic {
     private OrderVOWrapper orderVOWrapper;
 
     @Override
-    public PageInfo<BookOrderVO> findByUserId(long userId, int page, int rows){
-        List<BookOrder> orders=orderService.findByUserId(userId,page,rows);
+    public PageInfo<BookOrderVO> findByUserId(Long userId, int page, int rows){
+        List<BookOrder> orders;
+        if(userId==null){
+            orders=orderService.findAll(page,rows);
+        }else {
+            orders=orderService.findByUserId(userId,page,rows);
+        }
         List<BookOrderVO> orderVOS=orders.parallelStream()
                 .map(order -> orderVOWrapper.wrap(order)).collect(Collectors.toList());
         return new PageInfo<>(orderVOS);

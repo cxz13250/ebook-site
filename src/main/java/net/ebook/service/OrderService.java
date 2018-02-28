@@ -15,6 +15,8 @@ public interface OrderService {
 
     List<BookOrder> findByUserId(long userId, int page, int rows);
 
+    List<BookOrder> findAll(int page, int rows);
+
     BookOrder findById(long orderId);
 
     BookOrder createOrder(BookOrder order);

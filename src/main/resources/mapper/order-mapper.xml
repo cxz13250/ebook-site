@@ -17,6 +17,10 @@
     <select id="findByUserId" resultMap="OrderMap" parameterType="java.lang.Long">
         SELECT * FROM book_order WHERE user_id = #{userId} AND is_deleted = 0
     </select>
+
+    <select id="findAll" resultMap="OrderMap" parameterType="java.lang.Long">
+        SELECT * FROM book_order WHERE is_deleted = 0
+    </select>
     
     <insert id="saveOrder" useGeneratedKeys="true" keyProperty="order.id" parameterType="BookOrder" keyColumn="id">
         INSERT INTO book_order(user_id,create_time,is_deleted,all_returned) VALUES (#{order.userId},#{order.createTime},#{order.isDeleted},#{order.allReturned})

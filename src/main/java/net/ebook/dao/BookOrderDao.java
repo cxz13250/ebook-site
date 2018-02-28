@@ -17,6 +17,8 @@ public interface BookOrderDao {
 
     List<BookOrder> findByUserId(@Param(value = "userId")long userId);
 
+    List<BookOrder> findAll();
+
     BookOrder findById(@Param(value = "id")long id);
 
     long saveOrder(@Param("order")BookOrder order);
