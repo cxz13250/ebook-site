@@ -10,6 +10,14 @@
     </resultMap>
 
     <insert id="saveBookStatistic" keyColumn="id" useGeneratedKeys="true" parameterType="net.ebook.model.BookStatistic">
-        INSERT book_statistic(book_id,total,borrowed,create_ime) VALUES (#{statistic.bookId},#{statistic.total},#{statistic.borrowed},#{statistic.createTime});
+        INSERT book_statistic(book_id,total,borrowed,create_time) VALUES (#{statistic.bookId},#{statistic.total},#{statistic.borrowed},#{statistic.createTime});
     </insert>
+    
+    <select id="getByBookId" resultMap="StatisticMap" parameterType="java.lang.Long">
+        SELECT * FROM book_statistic WHERE book_id=#{id}
+    </select>
+    
+    <update id="update" parameterType="net.ebook.model.BookStatistic">
+        UPDATE book_statistic SET total=#{statistic.total}, borrowed=#{statistic.borrowed}
+    </update>
 </mapper>

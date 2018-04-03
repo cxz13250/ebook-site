@@ -29,7 +29,7 @@
     </insert>
 
     <update id="updateBook" parameterType="net.ebook.model.Book">
-        UPDATE book SET name=#{book.name},author=#{book.author},publisher=#{book.publisher},description=#{book.description},translator=#{book.translator},publish_time=#{book.publish_time}
+        UPDATE book SET name=#{book.name},category=#{book.category},author=#{book.author},publisher=#{book.publisher},description=#{book.description},translator=#{book.translator},publish_time=#{book.publishTime}
         WHERE id=#{book.id}
     </update>
 

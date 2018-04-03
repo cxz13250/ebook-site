@@ -71,9 +71,14 @@ public class UserServiceImpl implements UserService{
     public List<User> getUsers(int page, int rows, String keyword){
         PageHelper.startPage(page,rows);
         if(keyword!=null && StringUtils.trim(keyword)!=""){
-            return userDao.findByKeyword(keyword);
+            return userDao.findByKeyword("%"+keyword+"%");
         }else {
             return userDao.findAll();
         }
+    }
+
+    @Override
+    public void updateUser(User user){
+        userDao.updateUser(user);
     }
 }

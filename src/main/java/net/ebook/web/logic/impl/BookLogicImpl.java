@@ -59,7 +59,7 @@ public class BookLogicImpl implements BookLogic{
             throw new IllegalArgumentException("category not present");
         }
         Category category=categoryService.getById(vo.getCategory());
-        if(category!=null){
+        if(category==null){
             throw new HttpBadRequestException("categry not exist");
         }
         Book book=bookVOWrapper.unwrap(vo);
@@ -91,6 +91,9 @@ public class BookLogicImpl implements BookLogic{
         }
         if(vo.getTranslator()!=null){
             book.setTranslator(vo.getTranslator());
+        }
+        if(vo.getCategory()!=null){
+            book.setCategory(vo.getCategory());
         }
         bookService.updateBook(book);
 

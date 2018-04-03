@@ -25,4 +25,6 @@ public interface UserDao {
     List<User> findAll();
 
     List<User> findByKeyword(@Param("keyword")String keyword);
+
+    void updateUser(@Param("user") User user);
 }

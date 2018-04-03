@@ -24,7 +24,7 @@
     </select>
 
     <select id="findByKeyword" resultMap="UserMap" parameterType="java.lang.String">
-        SELECT * FROM user WHERE name LIKE "%" + keyword + "%"
+        SELECT * FROM user WHERE name LIKE #{keyword}
     </select>
 
     <select id="findByMobile" resultMap="UserMap" parameterType="java.lang.String">
@@ -35,4 +35,8 @@
         INSERT INTO user(name,email,mobile,password,create_time,is_delete)
         VALUES(#{user.name},#{user.email},#{user.mobile},#{user.password},#{user.createTime},#{user.deleted})
     </insert>
+    
+    <update id="updateUser" parameterType="net.ebook.model.User">
+        UPDATE user SET name=#{user.name},password=#{user.password},email=#{user.email},mobile=#{user.mobile} WHERE id=#{user.id}
+    </update>
 </mapper>

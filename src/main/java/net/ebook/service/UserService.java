@@ -27,4 +27,6 @@ public interface UserService {
     Role findRole(long id);
 
     List<User> getUsers(int page, int rows, String keyword);
+
+    void updateUser(User user);
 }

@@ -138,6 +138,13 @@ public class UserLogicImpl implements UserLogic{
             role.setRoleId(userVO.getRoleId());
             user2RoleService.updateRole(role);
         }
+        if( userVO.getMobile()!=null){
+            user.setMobile(userVO.getMobile());
+        }
+        if( userVO.getEmail()!=null){
+            user.setEmail(userVO.getEmail());
+        }
+        userService.updateUser(user);
 
         operationLogic.recordUserOperation(request,OperationStatus.UPDATE_USER);
 
