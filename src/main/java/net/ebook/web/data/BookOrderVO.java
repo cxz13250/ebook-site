@@ -23,5 +23,6 @@ public class BookOrderVO {
 
     private List<OrderItemVO> itemVOS;
 
-    private Boolean allReturned;
+    //-1 逾期不还, 0 未归还, 1 已归还
+    private Integer status;
 }

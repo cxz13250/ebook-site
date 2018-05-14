@@ -144,6 +144,9 @@ public class UserLogicImpl implements UserLogic{
         if( userVO.getEmail()!=null){
             user.setEmail(userVO.getEmail());
         }
+        if (userVO.getImgUrl()!=null){
+            user.setImgUrl(userVO.getImgUrl());
+        }
         userService.updateUser(user);
 
         operationLogic.recordUserOperation(request,OperationStatus.UPDATE_USER);

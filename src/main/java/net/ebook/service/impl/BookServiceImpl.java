@@ -56,4 +56,11 @@ public class BookServiceImpl implements BookService {
         book.setDeleted(DeleteStatus.IS_DELETE);
         bookDao.updateBook(book);
     }
+
+    @Override
+    public List<Book> findByCategory(long category){
+        PageHelper.startPage(0, 20);
+        List<Book> books=bookDao.findByCategory(category);
+        return books;
+    }
 }

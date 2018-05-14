@@ -9,6 +9,7 @@
         <result column="password" property="password"/>
         <result column="create_time" property="createTime"/>
         <result column="is_delete" property="deleted"/>
+        <result column="img_url" property="imgUrl"/>
     </resultMap>
 
     <select id="findById" resultMap="UserMap" parameterType="java.lang.Long">
@@ -37,6 +38,6 @@
     </insert>
     
     <update id="updateUser" parameterType="net.ebook.model.User">
-        UPDATE user SET name=#{user.name},password=#{user.password},email=#{user.email},mobile=#{user.mobile} WHERE id=#{user.id}
+        UPDATE user SET name=#{user.name},password=#{user.password},email=#{user.email},mobile=#{user.mobile},img_url=#{user.imgUrl} WHERE id=#{user.id}
     </update>
 </mapper>

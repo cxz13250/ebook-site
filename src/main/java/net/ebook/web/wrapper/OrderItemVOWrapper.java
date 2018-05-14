@@ -3,6 +3,7 @@ package net.ebook.web.wrapper;
 import net.ebook.model.OrderItem;
 import net.ebook.service.BookService;
 import net.ebook.web.data.OrderItemVO;
+import net.ebook.web.logic.BookLogic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,9 @@ public class OrderItemVOWrapper extends BaseWrapper<OrderItemVO,OrderItem> {
     @Autowired
     BookService bookService;
 
+    @Autowired
+    BookLogic bookLogic;
+
     @Override
     public OrderItemVO wrap(OrderItem item){
         OrderItemVO vo=new OrderItemVO();
@@ -25,6 +29,7 @@ public class OrderItemVOWrapper extends BaseWrapper<OrderItemVO,OrderItem> {
         vo.setIsReturned(item.isReturned());
         vo.setOrderId(item.getOrderId());
         vo.setBookName(bookService.getById(item.getBookId()).getName());
+        vo.setVo(bookLogic.getById(item.getBookId()));
         return vo;
     }
 
@@ -32,7 +37,6 @@ public class OrderItemVOWrapper extends BaseWrapper<OrderItemVO,OrderItem> {
     public OrderItem unwrap(OrderItemVO vo){
         OrderItem item=new OrderItem();
         item.setBookId(vo.getBookId());
-        item.setOrderId(vo.getOrderId());
         return item;
     }
 }

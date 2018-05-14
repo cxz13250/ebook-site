@@ -54,6 +54,14 @@ public class BookLogicImpl implements BookLogic{
     }
 
     @Override
+    public PageInfo<BookVO> getBookList(Long category, HttpServletRequest request)throws Exception{
+        List<Book> books=bookService.findByCategory(category);
+        List<BookVO> vos=bookVOWrapper.wrap(books);
+        operationLogic.recordUserOperation(request, OperationStatus.BOOK_LIST);
+        return new PageInfo<BookVO>(vos);
+    }
+
+    @Override
     public BookVO create(BookVO vo)throws Exception{
         if(vo.getCategory()==null){
             throw new IllegalArgumentException("category not present");

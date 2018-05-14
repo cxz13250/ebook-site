@@ -20,4 +20,6 @@ public class OrderItemVO {
     private String bookName;
 
     private Boolean isReturned;
+
+    private BookVO vo;
 }

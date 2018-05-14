@@ -51,15 +51,20 @@ public class OrderLogicImpl implements OrderLogic {
         if (order == null) {
             throw new HttpBadRequestException("order not exists");
         }
-        return orderVOWrapper.wrap(order);
+        BookOrderVO orderVO= orderVOWrapper.wrap(order);
+        return orderVO;
     }
 
     @Override
     public BookOrderVO createOrder(BookOrderVO vo){
         BookOrder order=orderVOWrapper.unwrap(vo);
         order=orderService.createOrder(order);
+        long id=order.getId();
         List<OrderItem> items = order.getItems().parallelStream()
-                .map(item -> orderService.createItem(item)).collect(Collectors.toList());
+                .map(item -> {
+                    item.setOrderId(id);
+                    return orderService.createItem(item);
+                }).collect(Collectors.toList());
         order.setItems(items);
         return orderVOWrapper.wrap(order);
     }
@@ -70,8 +75,10 @@ public class OrderLogicImpl implements OrderLogic {
         if (order == null) {
             throw new HttpBadRequestException("order not exists");
         }
-        if (vo.getAllReturned() != null) {
-            order.setAllReturned(vo.getAllReturned());
+        if (vo.getStatus() != null) {
+            if (vo.getStatus()==1) {
+                order.setAllReturned(true);
+            }
         }
         if (vo.getUserId() != null) {
             order.setUserId(vo.getUserId());

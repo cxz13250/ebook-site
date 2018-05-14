@@ -16,6 +16,8 @@ public interface BookLogic {
 
     PageInfo<BookVO> getBookList(int page, int rows, String keyword, HttpServletRequest request)throws Exception;
 
+    PageInfo<BookVO> getBookList(Long category, HttpServletRequest request)throws Exception;
+
     BookVO create(BookVO vo)throws Exception;
 
     BookVO update(BookVO vo);

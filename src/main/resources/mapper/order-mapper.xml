@@ -27,6 +27,6 @@
     </insert>
 
     <update id="updateOrder" parameterType="BookOrder">
-        UPDATE book_order SET is_deleted = #{order.isDeleted}, all_returned = #{order.isDeleted} WHERE id = #{order.id}
+        UPDATE book_order SET is_deleted = #{order.isDeleted}, all_returned = #{order.allReturned} WHERE id = #{order.id}
     </update>
 </mapper>

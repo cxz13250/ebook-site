@@ -30,7 +30,18 @@ public class OrderVOWrapper extends BaseWrapper<BookOrderVO, BookOrder>{
     public BookOrderVO wrap(BookOrder order){
         BookOrderVO vo=new BookOrderVO();
         vo.setId(order.getId());
-        vo.setAllReturned(order.isAllReturned());
+        if (order.isAllReturned()){
+            vo.setStatus(1);
+        }else {
+            System.out.println(order.getCreateTime().getTime());
+            System.out.println(order.getCreateTime().getTime()+(long)30*24*3600*1000);
+            System.out.println(System.currentTimeMillis());
+            if ((order.getCreateTime().getTime()+(long)30*24*3600*1000)<System.currentTimeMillis()){
+                vo.setStatus(-1);
+            }else {
+                vo.setStatus(0);
+            }
+        }
         vo.setCreateTime(order.getCreateTime().getTime());
         vo.setUserId(order.getUserId());
         vo.setUserName(userService.getUserById(order.getId()).getName());
