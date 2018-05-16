@@ -23,6 +23,10 @@
         SELECT * FROM book WHERE category=#{category} and is_deleted=0
     </select>
 
+    <select id="findByMenu" resultMap="BookMap" parameterType="java.lang.String">
+        SELECT * FROM book WHERE book.category IN (SELECT id from category where category.menu = #{menu} and category.is_deleted=0)
+    </select>
+
     <insert id="saveBook" keyProperty="book.id" parameterType="net.ebook.model.Book" useGeneratedKeys="true" keyColumn="id">
         INSERT INTO book(name,category,author,translator,publisher,description,publish_time,create_time,is_deleted,img_url)
         VALUES (#{book.name},#{book.category},#{book.author},#{book.translator},#{book.publisher},#{book.description},#{book.publishTime},#{book.createTime},#{book.deleted},#{book.imgUrl})
@@ -33,7 +37,7 @@
         WHERE id=#{book.id}
     </update>
 
-    <select id="findAll" resultMap="BookMap">
-        SELECT * FROM book WHERE is_deleted = 0
+    <select id="findAll" resultMap="BookMap" parameterType="java.lang.String">
+        SELECT * FROM book WHERE is_deleted = 0 AND name like #{keyword}
     </select>
 </mapper>

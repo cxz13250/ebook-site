@@ -23,4 +23,6 @@ public interface BookDao extends BaseDao<Book> {
     void updateBook(@Param("book")Book book);
 
     List<Book> findByCategory(@Param("category") long category);
+
+    List<Book> findByMenu(@Param("menu") String menu);
 }

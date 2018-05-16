@@ -7,6 +7,7 @@
         <result property="createTime" column="create_time"/>
         <result property="allReturned" column="all_returned"/>
         <result property="isDeleted" column="is_deleted"/>
+        <result property="status" column="status"/>
         <collection property="items" column="id" javaType="ArrayList" ofType="OrderItem" select="net.ebook.dao.OrderItemDao.findByOrderId"/>
     </resultMap>
     
@@ -15,18 +16,18 @@
     </select>
 
     <select id="findByUserId" resultMap="OrderMap" parameterType="java.lang.Long">
-        SELECT * FROM book_order WHERE user_id = #{userId} AND is_deleted = 0
+        SELECT * FROM book_order WHERE user_id = #{userId} AND is_deleted = 0 ORDER BY create_time DESC
     </select>
 
     <select id="findAll" resultMap="OrderMap" parameterType="java.lang.Long">
-        SELECT * FROM book_order WHERE is_deleted = 0
+        SELECT * FROM book_order WHERE is_deleted = 0 ORDER BY create_time DESC
     </select>
     
     <insert id="saveOrder" useGeneratedKeys="true" keyProperty="order.id" parameterType="BookOrder" keyColumn="id">
-        INSERT INTO book_order(user_id,create_time,is_deleted,all_returned) VALUES (#{order.userId},#{order.createTime},#{order.isDeleted},#{order.allReturned})
+        INSERT INTO book_order(user_id,create_time,is_deleted,all_returned,status) VALUES (#{order.userId},#{order.createTime},#{order.isDeleted},#{order.allReturned},#{order.status})
     </insert>
 
     <update id="updateOrder" parameterType="BookOrder">
-        UPDATE book_order SET is_deleted = #{order.isDeleted}, all_returned = #{order.allReturned} WHERE id = #{order.id}
+        UPDATE book_order SET is_deleted = #{order.isDeleted}, all_returned = #{order.allReturned},status=#{order.status} WHERE id = #{order.id}
     </update>
 </mapper>

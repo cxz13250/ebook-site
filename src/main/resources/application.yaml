@@ -38,7 +38,7 @@ spring:
         password: cxz00429
 
 server:
-    port: 8080
+    port: 9001
 
 logging.config: classpath:log4j2.online.yaml
 logging.access.directory: /home/share/log

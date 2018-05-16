@@ -54,6 +54,17 @@ public class BookController extends BaseController{
         }
     }
 
+    @RequestMapping(value = UrlConstants.API+"books/category",method = RequestMethod.GET)
+    public Map<String,Object> getListByMenu(@RequestParam(value = "menu") String menu,
+                                                HttpServletRequest request){
+        try {
+            return SuccessResult.ok(ResponseMessage.ITEM_RESULT,bookLogic.getBookList(menu, request));
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ErrorResult(StatusCode.BOOK_NOT_EXISTS);
+        }
+    }
+
     @RequestMapping(value = UrlConstants.API_BOOK,method = RequestMethod.GET)
     public Map<String, Object> getBook(@RequestParam(value = "bookId")Long bookId, HttpServletRequest request){
         try {

@@ -15,6 +15,6 @@
     </insert>
 
     <select id="findOperation" resultMap="OperationMap">
-        SELECT * FROM user_operation
+        SELECT * FROM user_operation order by create_time DESC
     </select>
 </mapper>

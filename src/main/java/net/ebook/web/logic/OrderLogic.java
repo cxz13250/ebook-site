@@ -7,6 +7,7 @@ import net.ebook.model.OrderItem;
 import net.ebook.web.data.BookOrderVO;
 import net.ebook.web.data.OrderItemVO;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -28,4 +29,6 @@ public interface OrderLogic {
     void deleteOrder(long orderId);
 
     OrderItemVO updateItem(OrderItemVO item);
+
+    BookOrderVO checkOrder(Long orderId, HttpServletRequest request);
 }

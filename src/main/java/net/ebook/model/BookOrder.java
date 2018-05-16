@@ -25,4 +25,7 @@ public class BookOrder {
     private boolean isDeleted;
 
     private boolean allReturned;
+
+    // 0审核借阅,1批准借阅,2审核归还,3批准被归还
+    private long status;
 }

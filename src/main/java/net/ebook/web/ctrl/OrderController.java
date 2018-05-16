@@ -5,6 +5,7 @@ import net.ebook.common.constants.OperationStatus;
 import net.ebook.common.constants.UrlConstants;
 import net.ebook.common.web.ErrorResult;
 import net.ebook.common.web.ResponseMessage;
+import net.ebook.common.web.StatusCode;
 import net.ebook.common.web.SuccessResult;
 import net.ebook.web.data.BookOrderVO;
 import net.ebook.web.data.OrderItemVO;
@@ -79,6 +80,18 @@ public class OrderController extends BaseController {
             orderLogic.updateOrder(vo);
             operationLogic.recordUserOperation(request, OperationStatus.ORDER_UPDATE);
             return SuccessResult.ok();
+        }catch (Exception e){
+            return new ErrorResult(e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = UrlConstants.API_ORDER+"/{orderId}",method = RequestMethod.PUT)
+    public Map<String, Object> checkOrder(@PathVariable @NotNull Long orderId,
+                                           HttpServletRequest request){
+        try{
+            BookOrderVO vo=orderLogic.checkOrder(orderId,request);
+            operationLogic.recordUserOperation(request, OperationStatus.ORDER_UPDATE);
+            return SuccessResult.ok(ResponseMessage.ITEM_RESULT, vo);
         }catch (Exception e){
             return new ErrorResult(e.getMessage());
         }

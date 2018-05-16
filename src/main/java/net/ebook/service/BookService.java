@@ -25,4 +25,6 @@ public interface BookService {
     void deleteBook(Book book);
 
     List<Book> findByCategory(long category);
+
+    List<Book> findByMenu(String menu);
 }

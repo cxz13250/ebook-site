@@ -25,7 +25,7 @@ public class BookStatisticServiceImpl implements BookStatisticService {
     }
 
     @Override
-    public BookStatistic findbyId(long id){
+    public BookStatistic findbyBookId(long id){
         return statisticDao.getByBookId(id);
     }
 

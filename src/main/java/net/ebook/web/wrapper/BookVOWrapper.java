@@ -41,7 +41,7 @@ public class BookVOWrapper extends BaseWrapper<BookVO,Book>{
         vo.setImgUrl(book.getImgUrl());
         vo.setCategoryName(categoryService.getById(book.getCategory()).getName());
 
-        BookStatistic statistic=statisticService.findbyId(book.getId());
+        BookStatistic statistic=statisticService.findbyBookId(book.getId());
         vo.setBorrowed(statistic.getBorrowed());
         vo.setTotal(statistic.getTotal());
         return vo;

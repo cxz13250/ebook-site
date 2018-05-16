@@ -2,6 +2,7 @@ package net.ebook.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import net.ebook.common.constants.DeleteStatus;
+import net.ebook.common.constants.OrderStatus;
 import net.ebook.dao.BookOrderDao;
 import net.ebook.dao.OrderItemDao;
 import net.ebook.model.BookOrder;
@@ -52,6 +53,7 @@ public class OrderServiceImpl implements OrderService {
         order.setDeleted(DeleteStatus.IS_NOT_DELETE);
         order.setCreateTime(new Timestamp(System.currentTimeMillis()));
         order.setAllReturned(false);
+        order.setStatus(OrderStatus.CHECK_BORROW);
         orderDao.saveOrder(order);
         return order;
     }

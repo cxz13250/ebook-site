@@ -62,6 +62,14 @@ public class BookLogicImpl implements BookLogic{
     }
 
     @Override
+    public PageInfo<BookVO> getBookList(String menu, HttpServletRequest request)throws Exception{
+        List<Book> books=bookService.findByMenu(menu);
+        List<BookVO> vos=bookVOWrapper.wrap(books);
+        operationLogic.recordUserOperation(request, OperationStatus.BOOK_LIST);
+        return new PageInfo<BookVO>(vos);
+    }
+
+    @Override
     public BookVO create(BookVO vo)throws Exception{
         if(vo.getCategory()==null){
             throw new IllegalArgumentException("category not present");
@@ -105,7 +113,7 @@ public class BookLogicImpl implements BookLogic{
         }
         bookService.updateBook(book);
 
-        BookStatistic statistic=statisticService.findbyId(vo.getId());
+        BookStatistic statistic=statisticService.findbyBookId(vo.getId());
         if(statistic==null){
             throw new HttpBadRequestException("book statistic not exist");
         }

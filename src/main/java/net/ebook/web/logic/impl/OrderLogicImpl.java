@@ -3,17 +3,22 @@ package net.ebook.web.logic.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import net.ebook.common.constants.DeleteStatus;
+import net.ebook.common.constants.OrderStatus;
 import net.ebook.model.BookOrder;
+import net.ebook.model.BookStatistic;
 import net.ebook.model.OrderItem;
+import net.ebook.service.BookStatisticService;
 import net.ebook.service.OrderService;
 import net.ebook.web.data.BookOrderVO;
 import net.ebook.web.data.OrderItemVO;
 import net.ebook.web.exception.HttpBadRequestException;
 import net.ebook.web.logic.OrderLogic;
+import net.ebook.web.wrapper.OrderItemVOWrapper;
 import net.ebook.web.wrapper.OrderVOWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,11 +37,19 @@ public class OrderLogicImpl implements OrderLogic {
     @Autowired
     private OrderVOWrapper orderVOWrapper;
 
+    @Autowired
+    private BookStatisticService bookStatisticService;
+
+    @Autowired
+    private OrderItemVOWrapper itemVOWrapper;
+
     @Override
     public PageInfo<BookOrderVO> findByUserId(Long userId, int page, int rows){
         List<BookOrder> orders;
         if(userId==null){
             orders=orderService.findAll(page,rows);
+//            orders=orders.stream().filter(order -> order.getStatus()==OrderStatus.CHECK_RETURN
+//                    || order.getStatus()==OrderStatus.CHECK_BORROW).collect(Collectors.toList());
         }else {
             orders=orderService.findByUserId(userId,page,rows);
         }
@@ -60,11 +73,11 @@ public class OrderLogicImpl implements OrderLogic {
         BookOrder order=orderVOWrapper.unwrap(vo);
         order=orderService.createOrder(order);
         long id=order.getId();
-        List<OrderItem> items = order.getItems().parallelStream()
-                .map(item -> {
-                    item.setOrderId(id);
-                    return orderService.createItem(item);
-                }).collect(Collectors.toList());
+        List<OrderItem> items=vo.getItemVOS().stream().map(i-> {
+            OrderItem item=itemVOWrapper.unwrap(i);
+            item.setOrderId(id);
+            return orderService.createItem(item);
+        }).collect(Collectors.toList());
         order.setItems(items);
         return orderVOWrapper.wrap(order);
     }
@@ -75,14 +88,10 @@ public class OrderLogicImpl implements OrderLogic {
         if (order == null) {
             throw new HttpBadRequestException("order not exists");
         }
-        if (vo.getStatus() != null) {
-            if (vo.getStatus()==1) {
-                order.setAllReturned(true);
-            }
-        }
         if (vo.getUserId() != null) {
             order.setUserId(vo.getUserId());
         }
+        order.setStatus(vo.getStatus());
         orderService.updateOrder(order);
     }
 
@@ -113,5 +122,40 @@ public class OrderLogicImpl implements OrderLogic {
         }
         orderService.updateItem(item);
         return vo;
+    }
+
+    @Override
+    public BookOrderVO checkOrder(Long orderId, HttpServletRequest request){
+        BookOrder order=orderService.findById(orderId);
+        if (order == null) {
+            throw new HttpBadRequestException("order not exists");
+        }
+        if (order.getStatus()== OrderStatus.CHECK_BORROW){
+            order.setStatus(OrderStatus.BORROWED);
+            orderService.updateOrder(order);
+            List<OrderItem> items = order.getItems().parallelStream()
+                    .map(item -> {
+                        item.setOrderId(orderId);
+                        BookStatistic statistic=bookStatisticService.findbyBookId(item.getBookId());
+                        statistic.setBorrowed(statistic.getBorrowed()+1);
+                        bookStatisticService.update(statistic);
+                        return item;
+                    }).collect(Collectors.toList());
+            order.setItems(items);
+        }else if (order.getStatus() == OrderStatus.CHECK_RETURN){
+            order.setStatus(OrderStatus.RETURNED);
+            order.setAllReturned(true);
+            orderService.updateOrder(order);
+            List<OrderItem> items = order.getItems().parallelStream()
+                    .map(item -> {
+                        BookStatistic statistic=bookStatisticService.findbyBookId(item.getBookId());
+                        statistic.setBorrowed(statistic.getBorrowed()-1);
+                        bookStatisticService.update(statistic);
+                        item.setReturned(true);
+                        return orderService.updateItem(item);
+                    }).collect(Collectors.toList());
+            order.setItems(items);
+        }
+        return orderVOWrapper.wrap(order);
     }
 }

@@ -18,6 +18,6 @@
     </select>
     
     <update id="update" parameterType="net.ebook.model.BookStatistic">
-        UPDATE book_statistic SET total=#{statistic.total}, borrowed=#{statistic.borrowed}
+        UPDATE book_statistic SET total=#{statistic.total}, borrowed=#{statistic.borrowed} WHERE id=#{statistic.id}
     </update>
 </mapper>

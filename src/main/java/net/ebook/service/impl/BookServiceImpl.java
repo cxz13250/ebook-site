@@ -28,7 +28,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> getBookList(int page, int rows, String keyword){
         PageHelper.startPage(page, rows);
-        List<Book> books=bookDao.findAll(keyword);
+        List<Book> books=bookDao.findAll("%"+keyword+"%");
         return books;
     }
 
@@ -61,6 +61,13 @@ public class BookServiceImpl implements BookService {
     public List<Book> findByCategory(long category){
         PageHelper.startPage(0, 20);
         List<Book> books=bookDao.findByCategory(category);
+        return books;
+    }
+
+    @Override
+    public List<Book> findByMenu(String menu){
+        PageHelper.startPage(0, 20);
+        List<Book> books=bookDao.findByMenu(menu);
         return books;
     }
 }

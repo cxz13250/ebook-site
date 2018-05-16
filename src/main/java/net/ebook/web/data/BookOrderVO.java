@@ -23,6 +23,6 @@ public class BookOrderVO {
 
     private List<OrderItemVO> itemVOS;
 
-    //-1 逾期不还, 0 未归还, 1 已归还
-    private Integer status;
+    //-1 逾期不还,0审核借阅,1批准借阅,2审核归还,3批准被归还
+    private Long status;
 }

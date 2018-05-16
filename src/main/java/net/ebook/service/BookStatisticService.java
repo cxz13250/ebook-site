@@ -12,7 +12,7 @@ public interface BookStatisticService {
 
     BookStatistic create(BookStatistic statistic);
 
-    BookStatistic findbyId(long id);
+    BookStatistic findbyBookId(long bookId);
 
     void update(BookStatistic statistic);
 

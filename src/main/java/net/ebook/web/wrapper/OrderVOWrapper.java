@@ -1,5 +1,6 @@
 package net.ebook.web.wrapper;
 
+import net.ebook.common.constants.OrderStatus;
 import net.ebook.model.BookOrder;
 import net.ebook.model.OrderItem;
 import net.ebook.service.UserService;
@@ -30,21 +31,18 @@ public class OrderVOWrapper extends BaseWrapper<BookOrderVO, BookOrder>{
     public BookOrderVO wrap(BookOrder order){
         BookOrderVO vo=new BookOrderVO();
         vo.setId(order.getId());
-        if (order.isAllReturned()){
-            vo.setStatus(1);
-        }else {
-            System.out.println(order.getCreateTime().getTime());
-            System.out.println(order.getCreateTime().getTime()+(long)30*24*3600*1000);
-            System.out.println(System.currentTimeMillis());
-            if ((order.getCreateTime().getTime()+(long)30*24*3600*1000)<System.currentTimeMillis()){
-                vo.setStatus(-1);
+        if (order.getStatus()== OrderStatus.BORROWED){
+            if ((order.getCreateTime().getTime()+(long)30*24*3600*1000)<System.currentTimeMillis()) {
+                vo.setStatus(OrderStatus.OVERDUE);
             }else {
-                vo.setStatus(0);
+                vo.setStatus(order.getStatus());
             }
+        }else {
+            vo.setStatus(order.getStatus());
         }
         vo.setCreateTime(order.getCreateTime().getTime());
         vo.setUserId(order.getUserId());
-        vo.setUserName(userService.getUserById(order.getId()).getName());
+        vo.setUserName(userService.getUserById(order.getUserId()).getName());
         List<OrderItemVO> itemVOS=order.getItems().parallelStream().map(item -> itemVOWrapper.wrap(item)).collect(Collectors.toList());
         vo.setItemVOS(itemVOS);
         return vo;
