@@ -49,7 +49,7 @@ public class BookLogicImpl implements BookLogic{
         List<Book> books=bookService.getBookList(page, rows, keyword);
         List<BookVO> vos=bookVOWrapper.wrap(books);
 
-        operationLogic.recordUserOperation(request, OperationStatus.BOOK_LIST);
+        //operationLogic.recordUserOperation(request, OperationStatus.BOOK_LIST);
         return new PageInfo<BookVO>(vos);
     }
 

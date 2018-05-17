@@ -18,7 +18,7 @@ public class OperationStatus {
 
     public static String OPERATION_LIST="日志列表";
 
-    public static String BOOK_LIST="书籍列表";
+    public static final String BOOK_LIST="书籍列表";
 
     public static String BOOK_ADD="添加书籍";
 
@@ -41,4 +41,5 @@ public class OperationStatus {
     public static String ORDER_DELETE="删除借书单";
 
     public static String BOOK_RETURN="归还书籍";
+
 }

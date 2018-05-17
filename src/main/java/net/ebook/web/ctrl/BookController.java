@@ -1,5 +1,7 @@
 package net.ebook.web.ctrl;
 
+import net.ebook.annotation.Log;
+import net.ebook.common.constants.OperationStatus;
 import net.ebook.common.constants.UrlConstants;
 import net.ebook.common.web.ErrorResult;
 import net.ebook.common.web.ResponseMessage;
@@ -65,6 +67,7 @@ public class BookController extends BaseController{
         }
     }
 
+    @Log(content=OperationStatus.BOOK_LIST)
     @RequestMapping(value = UrlConstants.API_BOOK,method = RequestMethod.GET)
     public Map<String, Object> getBook(@RequestParam(value = "bookId")Long bookId, HttpServletRequest request){
         try {

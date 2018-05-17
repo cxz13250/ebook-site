@@ -3,7 +3,6 @@ package net.ebook;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
-import org.springframework.boot.autoconfigure.aop.AopAutoConfiguration;
 import org.springframework.boot.autoconfigure.batch.BatchAutoConfiguration;
 import org.springframework.boot.autoconfigure.cloud.CloudAutoConfiguration;
 import org.springframework.boot.autoconfigure.dao.PersistenceExceptionTranslationAutoConfiguration;
@@ -56,7 +55,6 @@ import javax.servlet.MultipartConfigElement;
  */
 @SpringBootApplication(exclude = {
         ActiveMQAutoConfiguration.class,
-        AopAutoConfiguration.class,
         BatchAutoConfiguration.class,
         CloudAutoConfiguration.class,
         DeviceDelegatingViewResolverAutoConfiguration.class,
