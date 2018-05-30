@@ -32,6 +32,7 @@ public class BookController extends BaseController{
     @Autowired
     UserOperationLogic operationLogic;
 
+    @Log(content=OperationStatus.BOOK_LIST)
     @RequestMapping(value = UrlConstants.API+"books",method = RequestMethod.GET)
     public Map<String,Object> getList(@RequestParam(value = "page")Integer page,
                                       @RequestParam(value = "rows")Integer rows,
@@ -45,6 +46,7 @@ public class BookController extends BaseController{
         }
     }
 
+    @Log(content=OperationStatus.BOOK_LIST)
     @RequestMapping(value = UrlConstants.API+"books/{category}",method = RequestMethod.GET)
     public Map<String,Object> getListByCategory(@PathVariable @NotNull Long category,
                                       HttpServletRequest request){
@@ -56,6 +58,7 @@ public class BookController extends BaseController{
         }
     }
 
+    @Log(content=OperationStatus.BOOK_LIST)
     @RequestMapping(value = UrlConstants.API+"books/category",method = RequestMethod.GET)
     public Map<String,Object> getListByMenu(@RequestParam(value = "menu") String menu,
                                                 HttpServletRequest request){
@@ -67,7 +70,7 @@ public class BookController extends BaseController{
         }
     }
 
-    @Log(content=OperationStatus.BOOK_LIST)
+
     @RequestMapping(value = UrlConstants.API_BOOK,method = RequestMethod.GET)
     public Map<String, Object> getBook(@RequestParam(value = "bookId")Long bookId, HttpServletRequest request){
         try {

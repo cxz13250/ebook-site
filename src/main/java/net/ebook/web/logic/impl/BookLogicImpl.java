@@ -111,6 +111,9 @@ public class BookLogicImpl implements BookLogic{
         if(vo.getCategory()!=null){
             book.setCategory(vo.getCategory());
         }
+        if (vo.getImgUrl()!=null){
+            book.setImgUrl(vo.getImgUrl());
+        }
         bookService.updateBook(book);
 
         BookStatistic statistic=statisticService.findbyBookId(vo.getId());

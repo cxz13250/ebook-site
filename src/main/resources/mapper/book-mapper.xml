@@ -33,11 +33,11 @@
     </insert>
 
     <update id="updateBook" parameterType="net.ebook.model.Book">
-        UPDATE book SET name=#{book.name},category=#{book.category},author=#{book.author},publisher=#{book.publisher},description=#{book.description},translator=#{book.translator},publish_time=#{book.publishTime}
+        UPDATE book SET name=#{book.name},category=#{book.category},author=#{book.author},publisher=#{book.publisher},description=#{book.description},translator=#{book.translator},publish_time=#{book.publishTime},img_url=#{book.imgUrl}
         WHERE id=#{book.id}
     </update>
 
     <select id="findAll" resultMap="BookMap" parameterType="java.lang.String">
-        SELECT * FROM book WHERE is_deleted = 0 AND name like #{keyword}
+        SELECT * FROM book WHERE is_deleted = 0 AND name like #{keyword} OR publisher like #{keyword} OR author LIKE #{keyword}
     </select>
 </mapper>
